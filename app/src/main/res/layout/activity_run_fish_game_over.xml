@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dash_borad_background"
+    tools:context=".RunFishGameOverActivity">
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adViewTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="false"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-4566432493079281/6806500243">
+    </com.google.android.gms.ads.AdView>
+
+    <TextView
+        android:id="@+id/gameOverTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+        android:text="Game Over"
+        android:textAlignment="center"
+        android:textColor="#FF0000"
+        android:textSize="60sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/playAgainButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gameOverTextView"
+        android:layout_centerHorizontal="true"
+        android:background="#EF2A2A"
+        android:padding="10dp"
+        android:text="Play Again"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/scoreTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/playAgainButton"
+        android:layout_marginTop="67dp"
+        android:text="Score"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#FF0000"
+        android:textColorHighlight="#000000"
+        android:textColorHint="#FFFFFF"
+        android:textColorLink="#FF0000"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adViewBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-4566432493079281/5455558421">
+    </com.google.android.gms.ads.AdView>
+
+</RelativeLayout>
