@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/gameOverTextView"
         android:layout_centerHorizontal="true"
-        android:background="#EF2A2A"
+        android:background="@drawable/play_again_button"
         android:padding="10dp"
         android:text="Play Again"
         android:textAllCaps="false"

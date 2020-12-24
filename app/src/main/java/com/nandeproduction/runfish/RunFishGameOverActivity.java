@@ -89,6 +89,8 @@ public class RunFishGameOverActivity extends AppCompatActivity {
                         mInterstitialAd.show();
                     } else {
                         Log.d("TAG", "The interstitial wasn't loaded yet.");
+                        Intent mainIntent = new Intent(RunFishGameOverActivity.this, MainActivity.class);
+                        startActivity(mainIntent);
                     }
                 }else{
                     Intent mainIntent = new Intent(RunFishGameOverActivity.this, MainActivity.class);

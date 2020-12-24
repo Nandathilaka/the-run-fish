@@ -7,6 +7,7 @@
     android:background="@drawable/dash_borad_background"
     tools:context=".DashBoradActivity">
 
+<!--Removed Add
     <com.google.android.gms.ads.AdView
         android:id="@+id/adViewTop"
         android:layout_width="wrap_content"
@@ -15,7 +16,7 @@
         android:layout_alignParentBottom="false"
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-4566432493079281/3115323787">
-    </com.google.android.gms.ads.AdView>
+    </com.google.android.gms.ads.AdView>-->
 
     <ImageView
     android:id="@+id/imageView"
@@ -40,15 +41,15 @@
         android:textSize="36sp"
         android:textStyle="bold" />
 
+    <!--Removed Add
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adViewBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-4566432493079281/9361684854">
+        </com.google.android.gms.ads.AdView>-->
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adViewBottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-4566432493079281/9361684854">
-    </com.google.android.gms.ads.AdView>
-
-</RelativeLayout>
+    </RelativeLayout>

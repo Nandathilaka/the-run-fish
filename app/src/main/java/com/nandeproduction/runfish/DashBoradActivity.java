@@ -18,7 +18,7 @@ public class DashBoradActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_borad);
 
-
+        /* Removed Admob Adds in Load Page
         //AdMob Bottom Add Display Start
         mAdViewBottom = findViewById(R.id.adViewBottom);
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
@@ -46,7 +46,7 @@ public class DashBoradActivity extends AppCompatActivity {
                 .build();
         mAdViewTop.loadAd(adRequestTop);
         //AdMob Bottom Add Display End
-
+        */
 
 
 
