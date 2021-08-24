@@ -135,7 +135,7 @@ public class RunFishView extends View {
             yellowX = canvasWidth + 21;
             yellowY = (int) Math.floor(Math.random() * (maxFishY - minFishY)) + minFishY;
         }
-        canvas.drawCircle(yellowX,yellowY,10,yellowBall);
+        canvas.drawCircle(yellowX,yellowY,25,yellowBall);
         //Draw Yellow Ball End
 
         //Draw Green ball Start
@@ -147,56 +147,61 @@ public class RunFishView extends View {
         }
 
         if(marks > 100){
-            yellowSpeed = 13;
-            greenSpeed = 23;
-            redSpeed = 27;
-        }
-        if(marks > 300){
-            yellowSpeed = 16;
-            greenSpeed = 25;
-            redSpeed = 28;
-        }
-        if(marks > 600){
-            yellowSpeed = 19;
-            greenSpeed = 28;
-            redSpeed = 32;
-        }
-        if(marks > 900){
             yellowSpeed = 20;
             greenSpeed = 30;
-            redSpeed = 34;
+            redSpeed = 29;
         }
-        if(marks > 1200){
-            yellowSpeed = 22;
-            greenSpeed = 32;
-            redSpeed = 36;
+        if(marks > 200){
+            yellowSpeed = 23;
+            greenSpeed = 31;
+            redSpeed = 30;
         }
-        if(marks > 1500){
-            yellowSpeed = 24;
-            greenSpeed = 34;
-            redSpeed = 36;
+        if(marks > 300){
+            yellowSpeed = 25;
+            greenSpeed = 33;
+            redSpeed = 32;
         }
-        if(marks > 1800){
-            yellowSpeed = 26;
+        if(marks > 600){
+            yellowSpeed = 30;
             greenSpeed = 36;
-            redSpeed = 38;
+            redSpeed = 36;
         }
-        if(marks > 2000){
-            yellowSpeed = 28;
-            greenSpeed = 38;
+        if(marks > 900){
+            yellowSpeed = 35;
+            greenSpeed = 39;
             redSpeed = 40;
         }
-        if(marks > 2100){
-            yellowSpeed = 30;
-            greenSpeed = 40;
+        if(marks > 1200){
+            yellowSpeed = 40;
+            greenSpeed = 42;
             redSpeed = 42;
+        }
+        if(marks > 1500){
+            yellowSpeed = 45;
+            greenSpeed = 45;
+            redSpeed = 45;
+        }
+        if(marks > 1800){
+            yellowSpeed = 50;
+            greenSpeed = 48;
+            redSpeed = 48;
+        }
+        if(marks > 2000){
+            yellowSpeed = 55;
+            greenSpeed = 51;
+            redSpeed = 50;
+        }
+        if(marks > 2100){
+            yellowSpeed = 60;
+            greenSpeed = 54;
+            redSpeed = 55;
         }
 
         if (greenX < 0){
             greenX = canvasWidth + 21;
             greenY = (int) Math.floor(Math.random() * (maxFishY - minFishY)) + minFishY;
         }
-        canvas.drawCircle(greenX,greenY,20,greenBall);
+        canvas.drawCircle(greenX,greenY,35,greenBall);
         //Draw Green ball End
 
         //Draw Red ball Start
@@ -223,11 +228,11 @@ public class RunFishView extends View {
             redX = canvasWidth + 21;
             redY = (int) Math.floor(Math.random() * (maxFishY - minFishY)) + minFishY;
         }
-        canvas.drawCircle(redX,redY,30,redBall);
+        canvas.drawCircle(redX,redY,60,redBall);
         //Draw Red ball End
 
         //Draw Score Area
-        canvas.drawText("Score : " + marks,20,60,score);
+        canvas.drawText("Score : " + marks + "/10000",20,60,score);
 
         //Life Text
         //canvas.drawText("Life ",20,60,lifeText);

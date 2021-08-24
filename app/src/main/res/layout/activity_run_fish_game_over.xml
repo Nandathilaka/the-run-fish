@@ -7,6 +7,7 @@
     android:background="@drawable/dash_borad_background"
     tools:context=".RunFishGameOverActivity">
 
+    <!--Commented for the policy issue: One page can one Ad
     <com.google.android.gms.ads.AdView
         android:id="@+id/adViewTop"
         android:layout_width="wrap_content"
@@ -15,7 +16,7 @@
         android:layout_alignParentBottom="false"
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-4566432493079281/6806500243">
-    </com.google.android.gms.ads.AdView>
+    </com.google.android.gms.ads.AdView>-->
 
     <TextView
         android:id="@+id/gameOverTextView"
@@ -40,13 +41,39 @@
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="18dp" />
+    <Button
+        android:id="@+id/achievementButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/playAgainButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/play_again_button"
+        android:padding="10dp"
+        android:text="Achievements"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp" />
+    <Button
+        android:id="@+id/topPlayersButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/achievementButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/play_again_button"
+        android:padding="10dp"
+        android:text="Top Players"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp" />
 
     <TextView
         android:id="@+id/scoreTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/playAgainButton"
-        android:layout_marginTop="67dp"
+        android:layout_below="@id/topPlayersButton"
+        android:layout_marginTop="50dp"
         android:text="Score"
         android:textAlignment="center"
         android:textAllCaps="false"

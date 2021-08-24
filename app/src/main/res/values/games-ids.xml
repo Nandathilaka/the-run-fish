@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Google Play game services IDs. Save this file as res/values/games-ids.xml in your project.-->
+<resources>
+    <!--app_id-->
+    <string name="app_id" translatable="false">266481175231</string>
+    <!--package_name-->
+    <string name="package_name" translatable="false">com.nandeproduction.runfish</string>
+    <!--achievement Level 1-->
+    <string name="achievement_level_1" translatable="false">CgkIv5WQ3OAHEAIQAg</string>
+    <!--event The Run Fish-->
+    <string name="event_the_run_fish" translatable="false">CgkIv5WQ3OAHEAIQAw</string>
+    <!--leaderboard Top Players-->
+    <string name="leaderboard_top_players" translatable="false">CgkIv5WQ3OAHEAIQAQ</string>
+</resources>

@@ -1,5 +1,6 @@
 package com.nandeproduction.runfish;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -19,22 +21,43 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.games.AchievementsClient;
+import com.google.android.gms.games.Games;
+import com.google.android.gms.games.LeaderboardsClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 
 
 public class RunFishGameOverActivity extends AppCompatActivity {
 
-    private Button playAgain;
+    private Button playAgain,achievementButton,topPlayersButton;
     private TextView displayScore;
     private String score;
     private AdView mAdViewBottom;
-    private AdView mAdViewTop;
+    //private AdView mAdViewTop;
     private InterstitialAd mInterstitialAd;
 
+    //Google Sign In
+    private GoogleSignInClient googleSignInClient;
+    private AchievementsClient achievementsClient;
+    private LeaderboardsClient leaderboardsClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_run_fish_game_over);
+
+        //Google Sign In
+        initGoogleClientAndSignIN();
+        if(achievementsClient != null && leaderboardsClient != null){
+            achievementsClient.unlock("CgkIv5WQ3OAHEAIQAg");
+            leaderboardsClient.submitScore("CgkIv5WQ3OAHEAIQAQ", 100);
+        }
 
         //AdMob Bottom Add Display Start
         mAdViewBottom = findViewById(R.id.adViewBottom);
@@ -50,6 +73,7 @@ public class RunFishGameOverActivity extends AppCompatActivity {
         mAdViewBottom.loadAd(adRequest);
         //AdMob Bottom Add Display End
 
+        /*Commented for the policy issue: One page can one Ad
         //AdMob Top Add Display Start
         mAdViewTop = findViewById(R.id.adViewTop);
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
@@ -63,6 +87,7 @@ public class RunFishGameOverActivity extends AppCompatActivity {
                 .build();
         mAdViewTop.loadAd(adRequestTop);
         //AdMob Top Add Display End
+         */
 
 
         //AdMob InterstitialAd ads Start
@@ -101,6 +126,43 @@ public class RunFishGameOverActivity extends AppCompatActivity {
         });
 
 
+        //ShowTopPlayers
+        topPlayersButton = findViewById(R.id.topPlayersButton);
+        topPlayersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(leaderboardsClient != null){
+                    leaderboardsClient.getAllLeaderboardsIntent().addOnSuccessListener(new OnSuccessListener<Intent>() {
+                        @Override
+                        public void onSuccess(Intent intent) {
+                            startActivityForResult(intent,0);
+                        }
+                    });
+                }else{
+                    Toast.makeText(getApplicationContext(), "Google Signing failed", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
+
+        //Achievements
+        achievementButton = findViewById(R.id.achievementButton);
+        achievementButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(achievementsClient != null){
+                    achievementsClient.getAchievementsIntent().addOnSuccessListener(new OnSuccessListener<Intent>() {
+                        @Override
+                        public void onSuccess(Intent intent) {
+                            startActivityForResult(intent,0);
+                        }
+                    });
+                }else{
+                    Toast.makeText(getApplicationContext(), "Google Signing failed", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
 
         mInterstitialAd.setAdListener(new AdListener(){
 
@@ -138,5 +200,35 @@ public class RunFishGameOverActivity extends AppCompatActivity {
         }else{
             return false;
         }
+    }
+
+    private void initGoogleClientAndSignIN() {
+        //
+        /*
+        GoogleSignInOptions gso1 = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN)
+                .requestScopes(Drive.SCOPE_APPFOLDER)
+                //.requestScopes(Games.SCOPE_GAMES)
+                .build();
+        googleSignInClient = GoogleSignIn.getClient(this, gso1);
+         */
+        //
+
+        googleSignInClient = GoogleSignIn.getClient(this,new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN).build());
+
+        googleSignInClient.silentSignIn().addOnCompleteListener(new OnCompleteListener<GoogleSignInAccount>() {
+            @Override
+            public void onComplete(@NonNull Task<GoogleSignInAccount> task) {
+                if(task.isSuccessful()){
+                    achievementsClient = Games.getAchievementsClient(getApplicationContext(),task.getResult());
+                    leaderboardsClient = Games.getLeaderboardsClient(getApplicationContext(),task.getResult());
+
+                }else{
+                    Log.e("Error","SignInError",task.getException());
+                    Toast.makeText(getApplicationContext(), "Google Signing failed", Toast.LENGTH_LONG).show();
+
+                }
+            }
+        });
+
     }
 }

@@ -8,8 +8,8 @@ android {
         applicationId "com.nandeproduction.runfish"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 4
-        versionName "1.3"
+        versionCode 5
+        versionName "1.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -31,5 +31,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.google.android.gms:play-services-ads:19.3.0'
-
+    //Google Play Game Services
+    implementation 'com.google.android.gms:play-services-games:21.0.0'
+    implementation 'com.google.android.gms:play-services-auth:19.2.0'
 }
