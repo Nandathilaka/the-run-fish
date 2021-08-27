@@ -8,9 +8,17 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
+
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.LoadAdError;
 
 
 public class RunFishView extends View {
@@ -45,6 +53,8 @@ public class RunFishView extends View {
     private Paint redBall = new Paint();
     //Life count of fish
     private int lifeCount;
+    //Ad display when score got 1000
+    private InterstitialAd mInterstitialAd;
 
     public RunFishView(Context context) {
         super(context);
@@ -81,6 +91,29 @@ public class RunFishView extends View {
 
         redBall.setColor(Color.RED);
         redBall.setAntiAlias(false);
+
+        //AdMob InterstitialAd ads Start - test ID = ca-app-pub-3940256099942544/1033173712 / ca-app-pub-4566432493079281/9964320082
+        mInterstitialAd = new InterstitialAd(getContext());
+        mInterstitialAd.setAdUnitId("ca-app-pub-4566432493079281/9964320082");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
+        mInterstitialAd.setAdListener(new AdListener(){
+
+            //Close Add
+            @Override
+            public void onAdClosed() {
+                // Code to be executed when the interstitial ad is closed.
+            }
+
+
+            //Fail Add
+            @Override
+            public void onAdFailedToLoad(LoadAdError adError) {
+                // Code to be executed when an ad request fails.
+
+            }
+        });
+        //AdMob InterstitialAd ads End
 
 
     }
@@ -144,6 +177,47 @@ public class RunFishView extends View {
         if (hitBallCenter(greenX,greenY)){
             marks = marks + 20;
             greenX = -100;
+        }
+
+        if(marks == 300){
+            //Ad Start
+            //Check Internet or Wi-Fi ON
+            if(checkInternetOn()){
+                //Load Adds when click Play Again button
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                } else {
+                    Log.d("TAG", "The interstitial wasn't loaded yet.");
+                }
+            }
+            //Ad End
+        }
+        if(marks == 500){
+            //Ad Start
+            //Check Internet or Wi-Fi ON
+            if(checkInternetOn()){
+                //Load Adds when click Play Again button
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                } else {
+                    Log.d("TAG", "The interstitial wasn't loaded yet.");
+                }
+            }
+            //Ad End
+        }
+        if(marks == 1000){
+            //Ad Start
+            //Check Internet or Wi-Fi ON
+            if(checkInternetOn()){
+                //Load Adds when click Play Again button
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                } else {
+                    Log.d("TAG", "The interstitial wasn't loaded yet.");
+
+                }
+            }
+            //Ad End
         }
 
         if(marks > 100){
@@ -267,5 +341,17 @@ public class RunFishView extends View {
             fishSpeed = -22;
         }
         return true;
+    }
+
+    //Check Internet Connection Available at this time
+    private boolean checkInternetOn(){
+        ConnectivityManager connectivityManager = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+            //we are connected to a network
+            return true;
+        }else{
+            return false;
+        }
     }
 }

@@ -40,7 +40,7 @@ public class RunFishGameOverActivity extends AppCompatActivity {
     private String score;
     private AdView mAdViewBottom;
     //private AdView mAdViewTop;
-    private InterstitialAd mInterstitialAd;
+    //private InterstitialAd mInterstitialAd; //Commented for the ad remove
 
     //Google Sign In
     private GoogleSignInClient googleSignInClient;
@@ -89,13 +89,13 @@ public class RunFishGameOverActivity extends AppCompatActivity {
         //AdMob Top Add Display End
          */
 
-
+        /*Commented for the ad remove
         //AdMob InterstitialAd ads Start
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId("ca-app-pub-4566432493079281/9964320082");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
         //AdMob InterstitialAd ads End
-        
+        */
 
         //Initialized Button
         playAgain = (Button) findViewById(R.id.playAgainButton);
@@ -107,6 +107,7 @@ public class RunFishGameOverActivity extends AppCompatActivity {
         playAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*Commented for the ad remove
                 //Check Internet or Wi-Fi ON
                 if(checkInternetOn()){
                     //Load Adds when click Play Again button
@@ -121,7 +122,9 @@ public class RunFishGameOverActivity extends AppCompatActivity {
                     Intent mainIntent = new Intent(RunFishGameOverActivity.this, MainActivity.class);
                     startActivity(mainIntent);
                 }
-
+                */
+                Intent mainIntent = new Intent(RunFishGameOverActivity.this, MainActivity.class);
+                startActivity(mainIntent);
             }
         });
 
@@ -141,7 +144,6 @@ public class RunFishGameOverActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(getApplicationContext(), "Google Signing failed", Toast.LENGTH_LONG).show();
                 }
-
             }
         });
 
@@ -164,6 +166,7 @@ public class RunFishGameOverActivity extends AppCompatActivity {
             }
         });
 
+        /*Commented for the ad remove
         mInterstitialAd.setAdListener(new AdListener(){
 
             //Close Add
@@ -174,22 +177,14 @@ public class RunFishGameOverActivity extends AppCompatActivity {
                 startActivity(mainIntent);
             }
 
-            /*
-            //Fail Add
-            @Override
-            public void onAdFailedToLoad(LoadAdError adError) {
-                // Code to be executed when an ad request fails.
-                Intent mainIntent = new Intent(RunFishGameOverActivity.this, MainActivity.class);
-                startActivity(mainIntent);
-            }
-            */
         });
-
+         */
 
         displayScore.setText("Score = " + score);
 
     }
 
+    /*Commented for the ad remove
     //Check Internet Connection Available at this time
     private boolean checkInternetOn(){
         ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -201,6 +196,7 @@ public class RunFishGameOverActivity extends AppCompatActivity {
             return false;
         }
     }
+     */
 
     private void initGoogleClientAndSignIN() {
         //
