@@ -37,7 +37,7 @@
         android:layout_marginTop="110dp"
         android:text="The Run Fish"
         android:textAlignment="center"
-        android:textColor="#1F5478"
+        android:textColor="#FFFFFF"
         android:textSize="36sp"
         android:textStyle="bold" />
 
